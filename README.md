@@ -14,6 +14,7 @@ This project streamlines the creation of personalized AI prompts for multiple cl
 	- pip install notebooklm-py
 	- pip install "notebooklm-py[browser]"
 	- playwright install chromium
+   - pip install "notebooklm-py[cookies]"
 
 ## Installation
 
