@@ -15,12 +15,12 @@ source "$SCRIPT_DIR/vars.sh"
 # Optional: import cookies from your existing browser instead of running Playwright
 #pip install "notebooklm-py[cookies]"
 
-# Log into google notebooklm
-notebooklm login
-
 escape_sed_replacement() {
   printf '%s' "$1" | sed -e 's/[\\&|]/\\&/g'
 }
+
+# Log into google notebooklm
+notebooklm login --browser-cookies chrome
 
 for prompt_file in "$SCRIPT_DIR"/*prompt*.txt  ;do
   [ -f "$prompt_file" ] || continue
@@ -39,37 +39,12 @@ for prompt_file in "$SCRIPT_DIR"/*prompt*.txt  ;do
     if ! notebooklm list | grep "$name_value"; then
       echo "Creating notebook for $name_value"
       notebooklm create "$name_value"
-      ## Wait for notebook creation to complete.
-      sleep 10 # Wait for notebook creation to propagate
     else
       echo "Notebook for $name_value already exists"
     fi
-
+    notebooklm login --browser-cookies chrome
     nb="$(notebooklm list | grep "$name_value" | awk '{print $2}')"
-    echo "Using notebook $nb for client $client"
-
-    escaped_industry="$(escape_sed_replacement "$industry_value")"
-    escaped_name="$(escape_sed_replacement "$name_value")"
-
-    sed -e "s|\\\$industry|$escaped_industry|g" \
-        -e "s|\\\$name|$escaped_name|g" \
-        "$prompt_file" > "$output_dir/$prompt_name"
-        echo "Generated prompt for $client at $output_dir/$prompt_name"
-
-    gqp=$output_dir/$prompt_name
-
-    echo "Switching to notebook $nb and adding $gqp"
     notebooklm use "$nb"
-    #notebooklm source add-research "$gqp" --mode deep --import-all --no-wait
-    if [[ "$gqp" == *"ask"* ]]; then
-      research=$(cat "$gqp" )
-      notebooklm source add-research "$research" --import-all
-    else
-      #notebooklm source add-research "$gqp" --import-all --no-wait
-      question=$(cat "$gqp")
-      notebooklm ask "$question" --save-as-note
-    fi
-
-    echo "Generated $output_dir/$prompt_name and created notebooks at notebooklm.google.com"
+    echo "Using notebook $nb for client $client"
   done
 done
