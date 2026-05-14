@@ -1,51 +1,121 @@
-
 # AI Account Automation
 
-A simple project for generating customized prompts to use with NotebookLM, tailored for different clients based on industry and company name.
+A Bash-based project for generating customized prompts to use with NotebookLM, tailored for different clients based on industry and company name.
 
-## Getting Started
+## Overview
 
-### Prerequisites
-- Bash shell (available on macOS, Linux, and Windows with WSL/Git Bash)
+This project streamlines the creation of personalized AI prompts for multiple clients. It uses template files and a configuration system to automatically generate client-specific versions without manual editing.
 
-### Installation
+## Prerequisites
+
+- **Bash shell** (available on macOS, Linux, and Windows with WSL/Git Bash)
+- Basic command-line familiarity
+
+## Installation
+
 1. Clone the repository:
+   ```bash
    git clone https://github.com/jasoande/ai_automation
-   ```
-2. Navigate to the project directory:
    cd ai_automation
    ```
 
-## Usage
+2. Ensure the scripts are executable:
+   ```bash
+   chmod +x generate_prompts.sh
+   ```
 
-### Configuration
+## Quick Start
+
+1. **Configure clients** - Edit `vars.sh` to define your clients:
+   ```bash
+   CLIENTS=("Client1" "Client2" "Client3")
+   ```
+
+2. **Generate prompts** - Run the main script:
+   ```bash
+   bash generate_prompts.sh
+   ```
+
+3. **Find your outputs** - Customized prompts are saved in client-specific directories.
+
+## Configuration
+
 Client-specific variables are defined in `vars.sh`. This file contains:
-- A list of clients
-- Industry and name variables for each client
+- A list of client names
+- Industry variables for each client
+- Company name variables for each client
 
 Edit `vars.sh` to add, remove, or modify client definitions as needed.
 
+### Example vars.sh Structure
+
+```bash
+CLIENTS=("Hershey" "Merck" "Acme")
+
+# Client: Hershey
+Hershey_industry="Food & Beverage"
+Hershey_name="Hershey Company"
+
+# Client: Merck
+Merck_industry="Pharmaceuticals"
+Merck_name="Merck & Co."
+```
+
+## Usage
+
 ### Generating Prompts
-Run the script to generate customized prompts for all clients:
+
+Run the main script to generate customized prompts for all configured clients:
+
 ```bash
 bash generate_prompts.sh
 ```
 
 This will:
-- Read variables from `vars.sh`
-- Process each `prompt*.txt` file
+- Read client variables from `vars.sh`
+- Process each `prompt*.txt` template file
 - Replace placeholders (`$industry` and `$name`) with client-specific values
-- Save the customized prompts in client-specific directories (e.g., `Hershey/`, `Merck/`)
+- Save customized prompts in client-specific directories (e.g., `Hershey/`, `Merck/`)
 
 ### Output
-- Customized prompt files are saved in subdirectories named after each client.
-- Each output file retains the original prompt filename (e.g., `prompt1.txt`).
+
+- **Location**: Customized prompt files are saved in subdirectories named after each client
+- **Naming**: Each output file retains the original prompt template filename (e.g., `prompt1.txt`)
+- **Example**: A template `prompt1.txt` becomes `Hershey/prompt1.txt`, `Merck/prompt1.txt`, etc.
 
 ## Project Structure
-- `generate_prompts.sh`: Main script for prompt generation
-- `vars.sh`: Client variable definitions
-- `prompt*.txt`: Template prompt files
-- Client directories: Output folders for customized prompts
+
+```
+ai_automation/
+├── README.md                 # This file
+├── generate_prompts.sh       # Main script for prompt generation
+├── vars.sh                   # Client variable definitions
+├── prompt1.txt               # Template prompt file 1
+├── prompt2.txt               # Template prompt file 2
+├── prompt*.txt               # Additional template prompt files
+├── Hershey/                  # Output directory for Hershey client
+│   ├── prompt1.txt
+│   └── prompt2.txt
+└── Merck/                    # Output directory for Merck client
+    ├── prompt1.txt
+    └── prompt2.txt
+```
 
 ## Contributing
-Feel free to submit issues or pull requests for improvements.
+
+Contributions are welcome! Please feel free to:
+- Submit issues for bugs or feature requests
+- Create pull requests with improvements
+- Suggest enhancements to the automation process
+
+## License
+
+This project is open source. Please check for a LICENSE file or contact the repository owner for licensing details.
+
+## Support
+
+If you encounter issues:
+1. Verify that `vars.sh` is properly configured
+2. Ensure all `prompt*.txt` files exist
+3. Check that the Bash script is executable
+4. Review the script output for error messages
