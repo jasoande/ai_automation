@@ -9,6 +9,7 @@ source "$SCRIPT_DIR/vars.sh"
 escape_sed_replacement() {
   printf '%s' "$1" | sed -e 's/[\\&|]/\\&/g'
 }
+notebooklm login --browser-cookies chrome
 
 for prompt_file in "$SCRIPT_DIR"/*prompt*.txt  ;do
   [ -f "$prompt_file" ] || continue
@@ -21,7 +22,7 @@ for prompt_file in "$SCRIPT_DIR"/*prompt*.txt  ;do
     name_value="${!name_var}"
 
     output_dir="$SCRIPT_DIR/$client"
-    notebooklm login --browser-cookies chrome
+    mkdir -p $SCRIPT_DIR/$client
     nb="$(notebooklm list | grep "$name_value" | awk '{print $2}')"
     notebooklm use "$nb"
     echo "Using notebook $nb for client $client"

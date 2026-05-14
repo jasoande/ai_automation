@@ -22,15 +22,13 @@ for prompt_file in "$SCRIPT_DIR"/*prompt*.txt  ;do
     name_var="${client}_name"
     industry_value="${!industry_var}"
     name_value="${!name_var}"
-
     output_dir="$SCRIPT_DIR/$client"
-    mkdir -p "$output_dir/"
-
 
    if [[ -z "$(notebooklm list | grep "$name_value")" ]]; then
       notebooklm create "$name_value"
       echo "Created notebook for $client with name $name_value"
    fi
+
   done
 done
-exit 0
+echo "Moving to the next step"
