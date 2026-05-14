@@ -25,7 +25,7 @@ This project streamlines the creation of personalized AI prompts for multiple cl
 
 2. Ensure the scripts are executable:
    ```bash
-   chmod +x generate_prompts.sh
+   chmod +x wrapper.sh
    ```
 
 ## Quick Start
@@ -37,7 +37,7 @@ This project streamlines the creation of personalized AI prompts for multiple cl
 
 2. **Generate prompts** - Run the main script:
    ```bash
-   bash generate_prompts.sh
+   bash wrapper.sh
    ```
 
 3. **Find your outputs** - Customized prompts are saved in client-specific directories.
@@ -72,7 +72,7 @@ Merck_name="Merck & Co."
 Run the main script to generate customized prompts for all configured clients:
 
 ```bash
-bash generate_prompts.sh
+bash wrapper.sh
 ```
 
 This will:
