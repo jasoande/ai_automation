@@ -11,9 +11,9 @@ This project streamlines the creation of personalized AI prompts for multiple cl
 - **Bash shell** (available on macOS, Linux, and Windows with WSL/Git Bash)
 - Basic command-line familiarity
 - notebooklm-py
-	pip install notebooklm-py
-	pip install "notebooklm-py[browser]"
-	playwright install chromium
+	- pip install notebooklm-py
+	- pip install "notebooklm-py[browser]"
+	- playwright install chromium
 
 ## Installation
 
