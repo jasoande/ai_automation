@@ -14,7 +14,7 @@ This project streamlines the creation of personalized AI prompts for multiple cl
 	- pip install notebooklm-py
 	- pip install "notebooklm-py[browser]"
 	- playwright install chromium
-   - pip install "notebooklm-py[cookies]"
+        - pip install "notebooklm-py[cookies]"
 
 ## Installation
 
@@ -26,7 +26,7 @@ This project streamlines the creation of personalized AI prompts for multiple cl
 
 2. Ensure the scripts are executable:
    ```bash
-   chmod +x wrapper.sh
+   chmod +x create_account_plan.sh
    ```
 
 ## Quick Start
@@ -38,7 +38,7 @@ This project streamlines the creation of personalized AI prompts for multiple cl
 
 2. **Generate prompts** - Run the main script:
    ```bash
-   bash wrapper.sh
+   bash create_account_plan.sh
    ```
 
 3. **Find your outputs** - Customized prompts are saved in client-specific directories.
@@ -66,14 +66,11 @@ Merck_industry="Pharmaceuticals"
 Merck_name="Merck & Co."
 ```
 
-## Usage
 
-### Generating Prompts
-
-Run the main script to generate customized prompts for all configured clients:
+Run the main script to generate customized prompts and LLM's for all configured clients:
 
 ```bash
-bash wrapper.sh
+bash create_account_plan.sh
 ```
 
 This will:
@@ -93,17 +90,17 @@ This will:
 ```
 ai_automation/
 ├── README.md                 # This file
-├── generate_prompts.sh       # Main script for prompt generation
+├── create_account_plan.sh    # Main script for prompt generation
 ├── vars.sh                   # Client variable definitions
 ├── prompt1.txt               # Template prompt file 1
 ├── prompt2.txt               # Template prompt file 2
 ├── prompt*.txt               # Additional template prompt files
 ├── Hershey/                  # Output directory for Hershey client
-│   ├── prompt1.txt
-│   └── prompt2.txt
+│   ├── ask_prompt_01.txt     # Ask prompts do the research
+│   └── chat_prompt_01.txt    # Chat prompts ask questions from completed research  
 └── Merck/                    # Output directory for Merck client
-    ├── prompt1.txt
-    └── prompt2.txt
+    ├── ask_prompt_01.txt
+    └── chat_prompt_01.txt
 ```
 
 ## Contributing

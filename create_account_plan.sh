@@ -5,18 +5,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/vars.sh"
 
-# Basic installation of notebooklm-py
-#pip install notebooklm-py
-
-#With browser login support (required for first-time setup)
-#pip install "notebooklm-py[browser]"
-#playwright install chromium
-
-# Optional: import cookies from your existing browser instead of running Playwright
-#pip install "notebooklm-py[cookies]"
-
 # Log into google notebooklm
-notebooklm login --browser-cookies chrome
+notebooklm login
 
 start_time=$(date +%s)
 
