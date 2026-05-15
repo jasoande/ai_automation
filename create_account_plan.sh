@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-start_time=$(date +%s)
+
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -16,7 +16,9 @@ source "$SCRIPT_DIR/vars.sh"
 #pip install "notebooklm-py[cookies]"
 
 # Log into google notebooklm
-notebooklm login
+notebooklm login --browser-cookies chrome
+
+start_time=$(date +%s)
 
 escape_sed_replacement() {
   printf '%s' "$1" | sed -e 's/[\\&|]/\\&/g'
