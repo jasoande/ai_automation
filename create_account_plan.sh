@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+start_time=$(date +%s)
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -73,3 +73,5 @@ for prompt_file in "$SCRIPT_DIR"/*prompt*.txt  ;do
     echo "Generated $output_dir/$prompt_name and created notebooks at notebooklm.google.com"
   done
 done
+  end_time=$(date +%s)
+  echo "Script completed in $((end_time - start_time)) seconds."
